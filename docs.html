@@ -2,112 +2,96 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Docs · CHISEFRK API</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#06080c">
+  <title>Docs — CHISEFRK API</title>
+  <link rel="stylesheet" href="./assets/css/style.css">
 </head>
-
 <body>
-  <header class="navbar">
-    <a href="index.html" class="brand">
-      <span class="brand-mark">C</span>
-      <span>CHISEFRK</span>
-    </a>
+  <div class="noise"></div>
+  <div class="aurora aurora-one"></div>
+  <div class="aurora aurora-two"></div>
+  <div class="aurora aurora-three"></div>
+  <div class="cursor-glow"></div>
 
-    <nav>
-      <a href="index.html">HOME</a>
-      <a href="docs.html" class="active">DOCS</a>
-      <a href="updates.html">UPDATES</a>
-      <a href="support.html">SUPPORT</a>
-      <a href="login.html" class="login-link">LOGIN</a>
-    </nav>
-  </header>
+  <main>
+    <section class="page inner-page">
+      <div class="page-head reveal">
+        <div>
+          <span class="eyebrow">02 / DOCUMENTATION</span>
+          <h1>Small API.<br><span class="gradient-text">No ceremony.</span></h1>
+        </div>
+        <span class="page-badge glass">v1.0.0</span>
+      </div>
 
-  <main class="page">
-    <section class="page-header">
-      <span class="eyebrow">DOCUMENTATION</span>
-      <h1>CHISEFRK API Docs</h1>
-      <p>
-        Documentation for the personal CHISEFRK API.
-      </p>
-    </section>
-
-    <section class="docs-layout">
-      <aside class="docs-sidebar">
-        <a href="#getting-started">Getting Started</a>
-        <a href="#quote">Quote</a>
-        <a href="#tools">Tools</a>
-        <a href="#integrations">Integrations</a>
-      </aside>
-
-      <div class="docs-content">
-        <section id="getting-started" class="doc-section">
-          <span class="eyebrow">01</span>
-          <h2>Getting Started</h2>
-          <p>
-            CHISEFRK API is currently hosted as a static API through
-            GitHub Pages.
-          </p>
-
-          <div class="code-box">
-            <code>
-Base URL:
-https://chisefrk.github.io/chisefrk-api/
-            </code>
+      <div class="docs-stack">
+        <article class="doc-wide glass reveal">
+          <div class="doc-wide-top">
+            <span class="doc-number">01</span>
+            <span class="method">GET</span>
           </div>
-        </section>
 
-        <section id="quote" class="doc-section">
-          <span class="eyebrow">02</span>
-          <h2>Quote</h2>
+          <h2>Quote Collection</h2>
           <p>
-            Returns the complete quote dataset.
+            Koleksi quote berbentuk JSON. Cocok untuk bot WhatsApp,
+            website, project kecil, atau eksperimen yang membutuhkan
+            data quote tanpa database.
           </p>
 
-          <div class="endpoint-line">
+          <div class="code-block">
             <span>GET</span>
-            /api/quote/all.json
+            <code>/api/quote/all.json</code>
+            <button
+              class="inline-copy"
+              data-copy="https://chisefrk.github.io/chisefrk-api/api/quote/all.json"
+              type="button"
+            >COPY</button>
+          </div>
+        </article>
+
+        <div class="docs-two">
+          <article class="doc-card glass reveal">
+            <span class="doc-number">02</span>
+            <div class="doc-icon">⌘</div>
+            <h3>JSON First</h3>
+            <p>
+              Response menggunakan JSON native. Tidak perlu SDK
+              khusus atau library tambahan.
+            </p>
+          </article>
+
+          <article class="doc-card glass reveal">
+            <span class="doc-number">03</span>
+            <div class="doc-icon">◌</div>
+            <h3>Static</h3>
+            <p>
+              File disajikan langsung oleh GitHub Pages. Tidak ada
+              server yang harus terus hidup.
+            </p>
+          </article>
+        </div>
+
+        <article class="api-response glass reveal">
+          <div class="response-header">
+            <div>
+              <span class="eyebrow">RESPONSE</span>
+              <h3>Example</h3>
+            </div>
+            <span class="response-status">200 OK</span>
           </div>
 
-          <div class="code-box">
-            <code>
-{
+          <pre><code>{
   "status": true,
   "data": [
-    "Quote..."
+    "Your quote appears here."
   ]
-}
-            </code>
-          </div>
-        </section>
-
-        <section id="tools" class="doc-section">
-          <span class="eyebrow">03</span>
-          <h2>Tools</h2>
-          <p>
-            Utility endpoints will be added here as they are implemented.
-          </p>
-        </section>
-
-        <section id="integrations" class="doc-section">
-          <span class="eyebrow">04</span>
-          <h2>Integrations</h2>
-          <p>
-            Designed for Termux scripts, WhatsApp bots, websites,
-            and personal projects.
-          </p>
-        </section>
+}</code></pre>
+        </article>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div>
-      <strong>CHISEFRK API</strong>
-      <span>Documentation</span>
-    </div>
-
-    <span>© 2026 CHISEFRK</span>
-  </footer>
+  <div id="dock"></div>
+  <script src="./assets/js/app.js"></script>
 </body>
 </html>

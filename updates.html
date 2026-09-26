@@ -2,55 +2,74 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Updates · CHISEFRK API</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#06080c">
+  <title>Updates — CHISEFRK API</title>
+  <link rel="stylesheet" href="./assets/css/style.css">
 </head>
-
 <body>
-  <header class="navbar">
-    <a href="index.html" class="brand">
-      <span class="brand-mark">C</span>
-      <span>CHISEFRK</span>
-    </a>
+  <div class="noise"></div>
+  <div class="aurora aurora-one"></div>
+  <div class="aurora aurora-two"></div>
+  <div class="aurora aurora-three"></div>
+  <div class="cursor-glow"></div>
 
-    <nav>
-      <a href="index.html">HOME</a>
-      <a href="docs.html">DOCS</a>
-      <a href="updates.html" class="active">UPDATES</a>
-      <a href="support.html">SUPPORT</a>
-      <a href="login.html" class="login-link">LOGIN</a>
-    </nav>
-  </header>
-
-  <main class="page">
-    <section class="page-header">
-      <span class="eyebrow">CHANGELOG</span>
-      <h1>Updates</h1>
-      <p>Development history of CHISEFRK API.</p>
-    </section>
-
-    <section class="timeline">
-      <article class="update">
-        <span class="update-version">v1.0.0</span>
+  <main>
+    <section class="page inner-page">
+      <div class="page-head reveal">
         <div>
-          <h2>Initial foundation</h2>
-          <p>
-            Created the CHISEFRK API repository, static API structure,
-            documentation, and quote dataset.
-          </p>
+          <span class="eyebrow">03 / CHANGELOG</span>
+          <h1>Still being<br><span class="gradient-text">built.</span></h1>
         </div>
-      </article>
+      </div>
+
+      <div class="timeline">
+        <article class="update glass reveal">
+          <div class="update-marker"><span></span></div>
+
+          <div class="update-content">
+            <div class="update-meta">
+              <span>v1.0.0</span>
+              <time>SEP 2026</time>
+            </div>
+
+            <h2>The foundation.</h2>
+            <p>
+              CHISEFRK API dimulai ulang dengan struktur static API
+              yang sederhana, dataset quote, dokumentasi, dan portal
+              liquid-glass baru.
+            </p>
+
+            <div class="tag-row">
+              <span>API</span>
+              <span>JSON</span>
+              <span>GITHUB PAGES</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="update glass muted reveal">
+          <div class="update-marker"><span></span></div>
+
+          <div class="update-content">
+            <div class="update-meta">
+              <span>NEXT</span>
+              <time>SOON</time>
+            </div>
+
+            <h2>More useful things.</h2>
+            <p>
+              Endpoint berikutnya akan dibangun berdasarkan kebutuhan
+              nyata project CHISEFRK, bukan sekadar menambah angka
+              endpoint demi terlihat ramai.
+            </p>
+          </div>
+        </article>
+      </div>
     </section>
   </main>
 
-  <footer>
-    <div>
-      <strong>CHISEFRK API</strong>
-      <span>Updates</span>
-    </div>
-
-    <span>© 2026 CHISEFRK</span>
-  </footer>
+  <div id="dock"></div>
+  <script src="./assets/js/app.js"></script>
 </body>
 </html>

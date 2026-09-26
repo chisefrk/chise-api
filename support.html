@@ -2,60 +2,65 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Support · CHISEFRK API</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#06080c">
+  <title>Support — CHISEFRK API</title>
+  <link rel="stylesheet" href="./assets/css/style.css">
 </head>
-
 <body>
-  <header class="navbar">
-    <a href="index.html" class="brand">
-      <span class="brand-mark">C</span>
-      <span>CHISEFRK</span>
-    </a>
+  <div class="noise"></div>
+  <div class="aurora aurora-one"></div>
+  <div class="aurora aurora-two"></div>
+  <div class="aurora aurora-three"></div>
+  <div class="cursor-glow"></div>
 
-    <nav>
-      <a href="index.html">HOME</a>
-      <a href="docs.html">DOCS</a>
-      <a href="updates.html">UPDATES</a>
-      <a href="support.html" class="active">SUPPORT</a>
-      <a href="login.html" class="login-link">LOGIN</a>
-    </nav>
-  </header>
+  <main>
+    <section class="page inner-page">
+      <div class="page-head reveal">
+        <div>
+          <span class="eyebrow">04 / SUPPORT</span>
+          <h1>Find the<br><span class="gradient-text">source.</span></h1>
+        </div>
+      </div>
 
-  <main class="page">
-    <section class="page-header">
-      <span class="eyebrow">SUPPORT</span>
-      <h1>Need help?</h1>
-      <p>
-        This project is primarily for personal use.
-      </p>
-    </section>
+      <div class="support-grid">
+        <a
+          class="support-card glass reveal"
+          href="https://github.com/chisefrk/chisefrk-api"
+          target="_blank"
+          rel="noopener"
+        >
+          <span class="support-icon">◈</span>
+          <div>
+            <span class="eyebrow">SOURCE</span>
+            <h2>GitHub Repository</h2>
+            <p>Source code, issues, commits, and project updates.</p>
+          </div>
+          <span class="support-arrow">↗</span>
+        </a>
 
-    <section class="support-grid">
-      <article class="feature-card">
-        <span class="feature-icon">01</span>
-        <h3>Documentation</h3>
-        <p>Check the API documentation before debugging imaginary problems.</p>
-        <a href="docs.html">Open docs →</a>
-      </article>
+        <a class="support-card glass reveal" href="./docs.html">
+          <span class="support-icon">⌘</span>
+          <div>
+            <span class="eyebrow">READ</span>
+            <h2>Documentation</h2>
+            <p>Endpoint structure and usage examples.</p>
+          </div>
+          <span class="support-arrow">↗</span>
+        </a>
+      </div>
 
-      <article class="feature-card">
-        <span class="feature-icon">02</span>
-        <h3>GitHub</h3>
-        <p>Source code and project development live in the repository.</p>
-        <a href="https://github.com/chisefrk/chisefrk-api">Open GitHub →</a>
-      </article>
+      <div class="support-note glass reveal">
+        <span class="note-symbol">i</span>
+        <p>
+          CHISEFRK API adalah project personal. Jangan kirim secret,
+          token, password, atau data sensitif ke endpoint publik.
+        </p>
+      </div>
     </section>
   </main>
 
-  <footer>
-    <div>
-      <strong>CHISEFRK API</strong>
-      <span>Support</span>
-    </div>
-
-    <span>© 2026 CHISEFRK</span>
-  </footer>
+  <div id="dock"></div>
+  <script src="./assets/js/app.js"></script>
 </body>
 </html>

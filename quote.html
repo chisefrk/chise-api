@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#06080c">
+  <title>Quote — CHISEFRK API</title>
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+  <div class="noise"></div>
+  <div class="aurora aurora-one"></div>
+  <div class="aurora aurora-two"></div>
+  <div class="aurora aurora-three"></div>
+  <div class="cursor-glow"></div>
+
+  <main>
+    <section class="page inner-page">
+      <div class="page-head reveal">
+        <div>
+          <span class="eyebrow">01 / RANDOM QUOTE</span>
+          <h1>Something worth<br><span class="gradient-text">reading.</span></h1>
+        </div>
+        <span class="page-badge glass">LIVE DATA</span>
+      </div>
+
+      <div class="quote-layout">
+        <article class="quote-card glass reveal">
+          <div class="quote-mark">“</div>
+          <p id="quoteText">Memuat quote...</p>
+
+          <div class="quote-footer">
+            <span>CHISEFRK / QUOTE</span>
+            <button id="newQuote" class="mini-button glass" type="button">
+              New <span>↻</span>
+            </button>
+          </div>
+        </article>
+
+        <aside class="endpoint-card glass reveal">
+          <div class="card-top">
+            <span class="method">GET</span>
+            <span class="card-label">STATIC ENDPOINT</span>
+          </div>
+
+          <div>
+            <span class="eyebrow">ENDPOINT</span>
+            <div class="endpoint-url">
+              /api/quote/all.json
+            </div>
+          </div>
+
+          <button
+            class="copy-button"
+            data-copy="https://chisefrk.github.io/chisefrk-api/api/quote/all.json"
+            type="button"
+          >
+            <span>Copy endpoint</span><span>⧉</span>
+          </button>
+        </aside>
+      </div>
+
+      <div class="small-info glass reveal">
+        <span class="status-dot"></span>
+        <span>103 quotes available in the current dataset.</span>
+      </div>
+    </section>
+  </main>
+
+  <div id="dock"></div>
+  <script src="./assets/js/app.js"></script>
+</body>
+</html>

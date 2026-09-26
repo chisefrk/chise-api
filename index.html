@@ -2,141 +2,62 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="CHISEFRK API - Personal API Platform">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#06080c">
+  <meta name="description" content="CHISEFRK API — personal API and utility collection.">
   <title>CHISEFRK API</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
 </head>
-
 <body>
-  <header class="navbar">
-    <a href="index.html" class="brand">
-      <span class="brand-mark">C</span>
-      <span>CHISEFRK</span>
-    </a>
-
-    <nav>
-      <a href="index.html" class="active">HOME</a>
-      <a href="docs.html">DOCS</a>
-      <a href="updates.html">UPDATES</a>
-      <a href="support.html">SUPPORT</a>
-      <a href="login.html" class="login-link">LOGIN</a>
-    </nav>
-  </header>
+  <div class="noise"></div>
+  <div class="aurora aurora-one"></div>
+  <div class="aurora aurora-two"></div>
+  <div class="aurora aurora-three"></div>
+  <div class="cursor-glow"></div>
 
   <main>
-    <section class="hero">
-      <div class="hero-glow"></div>
-
-      <span class="eyebrow">PERSONAL API PLATFORM</span>
-
-      <h1>
-        Build with
-        <span>CHISEFRK API.</span>
-      </h1>
-
-      <p>
-        A personal collection of APIs, utilities, datasets,
-        and tools built for CHISEFRK projects.
-      </p>
-
-      <div class="hero-actions">
-        <a href="docs.html" class="button primary">Explore Docs</a>
-        <a href="api/info.json" class="button secondary">API Status</a>
-      </div>
-    </section>
-
-    <section class="stats">
-      <div class="stat-card">
-        <strong>01</strong>
-        <span>API Version</span>
-      </div>
-
-      <div class="stat-card">
-        <strong>103+</strong>
-        <span>Quote Dataset</span>
-      </div>
-
-      <div class="stat-card">
-        <strong>FREE</strong>
-        <span>Personal Usage</span>
-      </div>
-
-      <div class="stat-card">
-        <strong>GITHUB</strong>
-        <span>Hosted</span>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-heading">
-        <span class="eyebrow">WHAT'S INSIDE</span>
-        <h2>Tools built for actual use.</h2>
-        <p>
-          No pointless demo endpoints. The API is designed around
-          tools that can be reused by bots, websites, Termux scripts,
-          and personal projects.
-        </p>
-      </div>
-
-      <div class="feature-grid">
-        <article class="feature-card">
-          <span class="feature-icon">01</span>
-          <h3>Quotes</h3>
-          <p>
-            Curated quote dataset ready to consume from your projects.
-          </p>
-          <a href="docs.html#quote">View endpoint →</a>
-        </article>
-
-        <article class="feature-card">
-          <span class="feature-icon">02</span>
-          <h3>Tools</h3>
-          <p>
-            Utility endpoints for common tasks and automation.
-          </p>
-          <a href="docs.html#tools">View tools →</a>
-        </article>
-
-        <article class="feature-card">
-          <span class="feature-icon">03</span>
-          <h3>Integrations</h3>
-          <p>
-            Designed to work with bots, websites, scripts, and other APIs.
-          </p>
-          <a href="docs.html#integrations">View integrations →</a>
-        </article>
-      </div>
-    </section>
-
-    <section class="section endpoint-preview">
-      <div class="section-heading">
-        <span class="eyebrow">QUICK START</span>
-        <h2>First endpoint.</h2>
-      </div>
-
-      <div class="code-box">
-        <div class="code-top">
-          <span>GET</span>
-          <button id="copyQuote">COPY</button>
+    <section class="page hero-page">
+      <div class="hero-wrap reveal">
+        <div class="status-pill glass">
+          <span class="status-dot"></span>
+          <span>CHISEFRK API</span>
+          <span class="status-separator"></span>
+          <span>v1.0.0</span>
         </div>
 
-        <code id="quoteEndpoint">
-https://chisefrk.github.io/chisefrk-api/api/quote/all.json
-        </code>
+        <div class="hero-title">
+          <span class="eyebrow">PERSONAL API / UTILITY LAYER</span>
+          <h1>Build things.<br><span class="gradient-text">Keep them simple.</span></h1>
+          <p>
+            A small collection of APIs and utilities built for CHISEFRK
+            projects, bots, experiments, and whatever questionable idea happens next.
+          </p>
+        </div>
+
+        <div class="hero-actions">
+          <a href="./docs.html" class="primary-button">
+            <span>Explore API</span><span>↗</span>
+          </a>
+          <a href="./quote.html" class="secondary-button glass">
+            Try a quote
+          </a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat glass"><strong>103</strong><span>Quotes</span></div>
+          <div class="stat glass"><strong>JSON</strong><span>Native format</span></div>
+          <div class="stat glass"><strong>FREE</strong><span>Static hosting</span></div>
+        </div>
+      </div>
+
+      <div class="home-bottom">
+        <span>CHISEFRK / PERSONAL INFRASTRUCTURE</span>
+        <span>EST. 2026</span>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div>
-      <strong>CHISEFRK API</strong>
-      <span>Personal API Platform</span>
-    </div>
-
-    <span>© 2026 CHISEFRK</span>
-  </footer>
-
-  <script src="assets/js/app.js"></script>
+  <div id="dock"></div>
+  <script src="./assets/js/app.js"></script>
 </body>
 </html>

@@ -2,49 +2,41 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login · CHISEFRK API</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#06080c">
+  <title>Login — CHISEFRK API</title>
+  <link rel="stylesheet" href="./assets/css/style.css">
 </head>
-
 <body>
-  <header class="navbar">
-    <a href="index.html" class="brand">
-      <span class="brand-mark">C</span>
-      <span>CHISEFRK</span>
-    </a>
+  <div class="noise"></div>
+  <div class="aurora aurora-one"></div>
+  <div class="aurora aurora-two"></div>
+  <div class="aurora aurora-three"></div>
+  <div class="cursor-glow"></div>
 
-    <nav>
-      <a href="index.html">HOME</a>
-      <a href="docs.html">DOCS</a>
-      <a href="updates.html">UPDATES</a>
-      <a href="support.html">SUPPORT</a>
-      <a href="login.html" class="active login-link">LOGIN</a>
-    </nav>
-  </header>
+  <main>
+    <section class="page login-page">
+      <div class="login-card glass reveal">
+        <div class="login-orb">✦</div>
 
-  <main class="auth-page">
-    <section class="auth-card">
-      <span class="eyebrow">ACCOUNT</span>
-      <h1>Login</h1>
-      <p>
-        Authentication will be added when the project needs a backend.
-      </p>
+        <span class="eyebrow">PRIVATE AREA</span>
+        <h1>There is nothing<br><span class="gradient-text">to log into.</span></h1>
 
-      <form>
-        <label>
-          Email
-          <input type="email" placeholder="you@example.com" disabled>
-        </label>
+        <p>
+          Authentication belum dibutuhkan untuk versi static ini.
+          Halaman ini sengaja menjadi placeholder, bukan form login
+          palsu yang pura-pura bekerja.
+        </p>
 
-        <label>
-          Password
-          <input type="password" placeholder="••••••••" disabled>
-        </label>
-
-        <button type="button" disabled>Coming soon</button>
-      </form>
+        <div class="login-state">
+          <span class="status-dot"></span>
+          AUTHENTICATION DISABLED
+        </div>
+      </div>
     </section>
   </main>
+
+  <div id="dock"></div>
+  <script src="./assets/js/app.js"></script>
 </body>
 </html>
