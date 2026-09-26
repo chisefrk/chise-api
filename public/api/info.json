@@ -1,12 +1,8 @@
 {
   "status": true,
   "name": "CHISEFRK API",
-  "version": "1.0.0",
-  "description": "Personal API and utility dataset for CHISEFRK projects.",
+  "version": "2.0.0",
+  "description": "Free public API and utility collection built by CHISEFRK.",
   "author": "CHISEFRK",
-  "hosting": "GitHub Pages",
-  "endpoints": {
-    "quote": "/api/quote/all.json",
-    "info": "/api/info.json"
-  }
+  "runtime": "Cloudflare Workers"
 }
