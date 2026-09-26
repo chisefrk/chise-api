@@ -1,0 +1,12 @@
+{
+  "status": true,
+  "name": "CHISEFRK API",
+  "version": "1.0.0",
+  "description": "Personal API and utility dataset for CHISEFRK projects.",
+  "author": "CHISEFRK",
+  "hosting": "GitHub Pages",
+  "endpoints": {
+    "quote": "/api/quote/all.json",
+    "info": "/api/info.json"
+  }
+}
