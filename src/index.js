@@ -1,5 +1,9 @@
+import {
+  API_REGISTRY,
+  getCategories
+} from "./registry.js";
+
 const API_VERSION = "2.0.0";
-const API_NAME = "CHISEFRK API";
 
 const JSON_HEADERS = {
   "content-type": "application/json; charset=utf-8",
@@ -16,7 +20,7 @@ function json(data, init = {}) {
   });
 }
 
-function cors(response) {
+function withCors(response) {
   const headers = new Headers(response.headers);
 
   headers.set("access-control-allow-origin", "*");
@@ -33,245 +37,184 @@ function cors(response) {
   });
 }
 
-function endpoint(name, method, path, description) {
+async function getQuotes(env, request) {
+  const assetUrl = new URL("/api/quote/all.json", request.url);
+  const response = await env.ASSETS.fetch(assetUrl);
+
+  if (!response.ok) {
+    return json(
+      {
+        status: false,
+        error: "QUOTE_DATA_UNAVAILABLE"
+      },
+      { status: 503 }
+    );
+  }
+
+  const payload = await response.json();
+
+  if (!Array.isArray(payload.data) || payload.data.length === 0) {
+    return json(
+      {
+        status: false,
+        error: "QUOTE_DATA_EMPTY"
+      },
+      { status: 503 }
+    );
+  }
+
+  return payload.data;
+}
+
+function apiRoot(request) {
+  const url = new URL(request.url);
+
   return {
-    name,
-    method,
-    path,
-    description
+    status: true,
+    name: "CHISEFRK API",
+    version: API_VERSION,
+    runtime: "Cloudflare Workers",
+    baseUrl: url.origin,
+    endpoints: API_REGISTRY
   };
 }
 
-function apiInfo(origin) {
+function apiInfo(request) {
+  const url = new URL(request.url);
+
   return {
     status: true,
-    name: API_NAME,
+    name: "CHISEFRK API",
     version: API_VERSION,
+    description:
+      "Free public API and utility collection built by CHISEFRK.",
+    author: "CHISEFRK",
     runtime: "Cloudflare Workers",
-    baseUrl: origin,
-    endpoints: {
-      root: "/api",
-      health: "/api/health",
-      info: "/api/info",
-      list: "/api/list",
-      quoteRandom: "/api/quote/random",
-      quoteAll: "/api/quote/all"
-    }
+    baseUrl: url.origin,
+    categories: getCategories()
   };
 }
 
 function apiList() {
   return {
     status: true,
-    total: 6,
-    data: [
-      endpoint(
-        "API Root",
-        "GET",
-        "/api",
-        "API metadata and endpoint overview."
-      ),
-      endpoint(
-        "Health",
-        "GET",
-        "/api/health",
-        "Check API availability."
-      ),
-      endpoint(
-        "Info",
-        "GET",
-        "/api/info",
-        "Get API information and metadata."
-      ),
-      endpoint(
-        "Endpoint List",
-        "GET",
-        "/api/list",
-        "List all currently available API endpoints."
-      ),
-      endpoint(
-        "Random Quote",
-        "GET",
-        "/api/quote/random",
-        "Return one random quote."
-      ),
-      endpoint(
-        "All Quotes",
-        "GET",
-        "/api/quote/all",
-        "Return the complete quote dataset."
-      )
-    ]
+    total: API_REGISTRY.length,
+    categories: getCategories(),
+    data: API_REGISTRY
   };
-}
-
-async function getQuotes(env, request) {
-  const assetUrl = new URL("/api/quote/all.json", request.url);
-  const response = await env.ASSETS.fetch(assetUrl);
-
-  if (!response.ok) {
-    return {
-      error: json(
-        {
-          status: false,
-          error: "QUOTE_DATA_UNAVAILABLE"
-        },
-        { status: 503 }
-      )
-    };
-  }
-
-  let payload;
-
-  try {
-    payload = await response.json();
-  } catch {
-    return {
-      error: json(
-        {
-          status: false,
-          error: "QUOTE_DATA_INVALID"
-        },
-        { status: 503 }
-      )
-    };
-  }
-
-  if (!Array.isArray(payload.data) || payload.data.length === 0) {
-    return {
-      error: json(
-        {
-          status: false,
-          error: "QUOTE_DATA_EMPTY"
-        },
-        { status: 503 }
-      )
-    };
-  }
-
-  return {
-    data: payload.data
-  };
-}
-
-async function handleApi(request, env) {
-  const url = new URL(request.url);
-  const path = url.pathname;
-
-  if (request.method !== "GET") {
-    return cors(
-      json(
-        {
-          status: false,
-          error: "METHOD_NOT_ALLOWED",
-          allowed: ["GET", "OPTIONS"]
-        },
-        {
-          status: 405,
-          headers: {
-            allow: "GET, OPTIONS"
-          }
-        }
-      )
-    );
-  }
-
-  if (path === "/api" || path === "/api/") {
-    return cors(json(apiInfo(url.origin)));
-  }
-
-  if (path === "/api/health") {
-    return cors(
-      json({
-        status: true,
-        service: API_NAME,
-        version: API_VERSION,
-        uptime: "edge",
-        timestamp: new Date().toISOString()
-      })
-    );
-  }
-
-  if (path === "/api/info") {
-    return cors(
-      json({
-        status: true,
-        name: API_NAME,
-        version: API_VERSION,
-        description:
-          "Free public API and utility collection built by CHISEFRK.",
-        author: "CHISEFRK",
-        runtime: "Cloudflare Workers",
-        baseUrl: url.origin,
-        endpoints: apiInfo(url.origin).endpoints
-      })
-    );
-  }
-
-  if (path === "/api/list") {
-    return cors(json(apiList()));
-  }
-
-  if (
-    path === "/api/quote/random" ||
-    path === "/api/quote/random.js"
-  ) {
-    const result = await getQuotes(env, request);
-
-    if (result.error) {
-      return cors(result.error);
-    }
-
-    const index = Math.floor(Math.random() * result.data.length);
-
-    return cors(
-      json({
-        status: true,
-        data: result.data[index]
-      })
-    );
-  }
-
-  if (path === "/api/quote/all") {
-    const result = await getQuotes(env, request);
-
-    if (result.error) {
-      return cors(result.error);
-    }
-
-    return cors(
-      json({
-        status: true,
-        total: result.data.length,
-        data: result.data
-      })
-    );
-  }
-
-  return cors(
-    json(
-      {
-        status: false,
-        error: "ENDPOINT_NOT_FOUND",
-        path
-      },
-      {
-        status: 404
-      }
-    )
-  );
 }
 
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+    const path = url.pathname;
 
     if (request.method === "OPTIONS") {
-      return cors(new Response(null, { status: 204 }));
+      return withCors(
+        new Response(null, {
+          status: 204
+        })
+      );
     }
 
-    if (url.pathname === "/api" || url.pathname.startsWith("/api/")) {
-      return handleApi(request, env);
+    if (request.method !== "GET") {
+      return withCors(
+        json(
+          {
+            status: false,
+            error: "METHOD_NOT_ALLOWED",
+            method: request.method,
+            allowed: ["GET", "OPTIONS"]
+          },
+          {
+            status: 405,
+            headers: {
+              allow: "GET, OPTIONS"
+            }
+          }
+        )
+      );
+    }
+
+    if (path === "/api" || path === "/api/") {
+      return withCors(json(apiRoot(request)));
+    }
+
+    if (path === "/api/health") {
+      return withCors(
+        json({
+          status: true,
+          service: "CHISEFRK API",
+          version: API_VERSION,
+          uptime: "edge",
+          timestamp: new Date().toISOString()
+        })
+      );
+    }
+
+    if (path === "/api/info") {
+      return withCors(json(apiInfo(request)));
+    }
+
+    if (path === "/api/list") {
+      return withCors(json(apiList()));
+    }
+
+    if (
+      path === "/api/quote/random" ||
+      path === "/api/quote/random.js"
+    ) {
+      const quotes = await getQuotes(env, request);
+
+      if (!Array.isArray(quotes)) {
+        return withCors(quotes);
+      }
+
+      const index = Math.floor(Math.random() * quotes.length);
+
+      return withCors(
+        json({
+          status: true,
+          data: quotes[index]
+        })
+      );
+    }
+
+    if (path === "/api/quote/all") {
+      const quotes = await getQuotes(env, request);
+
+      if (!Array.isArray(quotes)) {
+        return withCors(quotes);
+      }
+
+      return withCors(
+        json({
+          status: true,
+          total: quotes.length,
+          data: quotes
+        })
+      );
+    }
+
+    if (path.startsWith("/api/")) {
+      const assetResponse = await env.ASSETS.fetch(request);
+
+      if (assetResponse.status !== 404) {
+        return withCors(assetResponse);
+      }
+
+      return withCors(
+        json(
+          {
+            status: false,
+            error: "ENDPOINT_NOT_FOUND",
+            path
+          },
+          {
+            status: 404
+          }
+        )
+      );
     }
 
     return env.ASSETS.fetch(request);
