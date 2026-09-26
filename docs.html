@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Docs · CHISEFRK API</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+  <header class="navbar">
+    <a href="index.html" class="brand">
+      <span class="brand-mark">C</span>
+      <span>CHISEFRK</span>
+    </a>
+
+    <nav>
+      <a href="index.html">HOME</a>
+      <a href="docs.html" class="active">DOCS</a>
+      <a href="updates.html">UPDATES</a>
+      <a href="support.html">SUPPORT</a>
+      <a href="login.html" class="login-link">LOGIN</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <section class="page-header">
+      <span class="eyebrow">DOCUMENTATION</span>
+      <h1>CHISEFRK API Docs</h1>
+      <p>
+        Documentation for the personal CHISEFRK API.
+      </p>
+    </section>
+
+    <section class="docs-layout">
+      <aside class="docs-sidebar">
+        <a href="#getting-started">Getting Started</a>
+        <a href="#quote">Quote</a>
+        <a href="#tools">Tools</a>
+        <a href="#integrations">Integrations</a>
+      </aside>
+
+      <div class="docs-content">
+        <section id="getting-started" class="doc-section">
+          <span class="eyebrow">01</span>
+          <h2>Getting Started</h2>
+          <p>
+            CHISEFRK API is currently hosted as a static API through
+            GitHub Pages.
+          </p>
+
+          <div class="code-box">
+            <code>
+Base URL:
+https://chisefrk.github.io/chisefrk-api/
+            </code>
+          </div>
+        </section>
+
+        <section id="quote" class="doc-section">
+          <span class="eyebrow">02</span>
+          <h2>Quote</h2>
+          <p>
+            Returns the complete quote dataset.
+          </p>
+
+          <div class="endpoint-line">
+            <span>GET</span>
+            /api/quote/all.json
+          </div>
+
+          <div class="code-box">
+            <code>
+{
+  "status": true,
+  "data": [
+    "Quote..."
+  ]
+}
+            </code>
+          </div>
+        </section>
+
+        <section id="tools" class="doc-section">
+          <span class="eyebrow">03</span>
+          <h2>Tools</h2>
+          <p>
+            Utility endpoints will be added here as they are implemented.
+          </p>
+        </section>
+
+        <section id="integrations" class="doc-section">
+          <span class="eyebrow">04</span>
+          <h2>Integrations</h2>
+          <p>
+            Designed for Termux scripts, WhatsApp bots, websites,
+            and personal projects.
+          </p>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>
+      <strong>CHISEFRK API</strong>
+      <span>Documentation</span>
+    </div>
+
+    <span>© 2026 CHISEFRK</span>
+  </footer>
+</body>
+</html>
