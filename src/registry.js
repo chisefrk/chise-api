@@ -46,6 +46,15 @@ export const API_REGISTRY = [
     category: "Quote",
     description: "Return the complete quote dataset.",
     status: "stable"
+  },
+  {
+    name: "Universal Downloader",
+    method: "POST",
+    path: "/api/download",
+    category: "Downloader",
+    description:
+      "Resolve downloadable media from supported public media URLs.",
+    status: "experimental"
   }
 ];
 

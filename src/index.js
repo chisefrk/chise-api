@@ -3,6 +3,8 @@ import {
   getCategories
 } from "./registry.js";
 
+import { handleDownloader } from "./handlers/downloader.js";
+
 const API_VERSION = "2.0.0";
 
 const JSON_HEADERS = {
@@ -24,7 +26,10 @@ function withCors(response) {
   const headers = new Headers(response.headers);
 
   headers.set("access-control-allow-origin", "*");
-  headers.set("access-control-allow-methods", "GET, OPTIONS");
+  headers.set(
+    "access-control-allow-methods",
+    "GET, POST, OPTIONS"
+  );
   headers.set(
     "access-control-allow-headers",
     "Content-Type, Authorization"
@@ -117,30 +122,49 @@ export default {
       );
     }
 
-    if (request.method !== "GET") {
-      return withCors(
-        json(
-          {
-            status: false,
-            error: "METHOD_NOT_ALLOWED",
-            method: request.method,
-            allowed: ["GET", "OPTIONS"]
-          },
-          {
-            status: 405,
-            headers: {
-              allow: "GET, OPTIONS"
-            }
-          }
-        )
-      );
-    }
-
     if (path === "/api" || path === "/api/") {
+      if (request.method !== "GET") {
+        return withCors(
+          json(
+            {
+              status: false,
+              error: "METHOD_NOT_ALLOWED",
+              method: request.method,
+              allowed: ["GET", "OPTIONS"]
+            },
+            {
+              status: 405,
+              headers: {
+                allow: "GET, OPTIONS"
+              }
+            }
+          )
+        );
+      }
+
       return withCors(json(apiRoot(request)));
     }
 
     if (path === "/api/health") {
+      if (request.method !== "GET") {
+        return withCors(
+          json(
+            {
+              status: false,
+              error: "METHOD_NOT_ALLOWED",
+              method: request.method,
+              allowed: ["GET", "OPTIONS"]
+            },
+            {
+              status: 405,
+              headers: {
+                allow: "GET, OPTIONS"
+              }
+            }
+          )
+        );
+      }
+
       return withCors(
         json({
           status: true,
@@ -153,10 +177,48 @@ export default {
     }
 
     if (path === "/api/info") {
+      if (request.method !== "GET") {
+        return withCors(
+          json(
+            {
+              status: false,
+              error: "METHOD_NOT_ALLOWED",
+              method: request.method,
+              allowed: ["GET", "OPTIONS"]
+            },
+            {
+              status: 405,
+              headers: {
+                allow: "GET, OPTIONS"
+              }
+            }
+          )
+        );
+      }
+
       return withCors(json(apiInfo(request)));
     }
 
     if (path === "/api/list") {
+      if (request.method !== "GET") {
+        return withCors(
+          json(
+            {
+              status: false,
+              error: "METHOD_NOT_ALLOWED",
+              method: request.method,
+              allowed: ["GET", "OPTIONS"]
+            },
+            {
+              status: 405,
+              headers: {
+                allow: "GET, OPTIONS"
+              }
+            }
+          )
+        );
+      }
+
       return withCors(json(apiList()));
     }
 
@@ -164,6 +226,25 @@ export default {
       path === "/api/quote/random" ||
       path === "/api/quote/random.js"
     ) {
+      if (request.method !== "GET") {
+        return withCors(
+          json(
+            {
+              status: false,
+              error: "METHOD_NOT_ALLOWED",
+              method: request.method,
+              allowed: ["GET", "OPTIONS"]
+            },
+            {
+              status: 405,
+              headers: {
+                allow: "GET, OPTIONS"
+              }
+            }
+          )
+        );
+      }
+
       const quotes = await getQuotes(env, request);
 
       if (!Array.isArray(quotes)) {
@@ -181,6 +262,25 @@ export default {
     }
 
     if (path === "/api/quote/all") {
+      if (request.method !== "GET") {
+        return withCors(
+          json(
+            {
+              status: false,
+              error: "METHOD_NOT_ALLOWED",
+              method: request.method,
+              allowed: ["GET", "OPTIONS"]
+            },
+            {
+              status: 405,
+              headers: {
+                allow: "GET, OPTIONS"
+              }
+            }
+          )
+        );
+      }
+
       const quotes = await getQuotes(env, request);
 
       if (!Array.isArray(quotes)) {
@@ -193,6 +293,31 @@ export default {
           total: quotes.length,
           data: quotes
         })
+      );
+    }
+
+    if (path === "/api/download") {
+      if (request.method !== "POST") {
+        return withCors(
+          json(
+            {
+              status: false,
+              error: "METHOD_NOT_ALLOWED",
+              method: request.method,
+              allowed: ["POST", "OPTIONS"]
+            },
+            {
+              status: 405,
+              headers: {
+                allow: "POST, OPTIONS"
+              }
+            }
+          )
+        );
+      }
+
+      return withCors(
+        await handleDownloader(request, env, json)
       );
     }
 
